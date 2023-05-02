@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_instargram/src/components/image_data.dart';
 import 'package:flutter_instargram/src/controller/bottom_nav_controller.dart';
 import 'package:flutter_instargram/src/pages/home.dart';
+import 'package:flutter_instargram/src/pages/search.dart';
 import 'package:get/get.dart';
 
 
@@ -18,9 +19,7 @@ class App extends GetView<BottomNavController> {
           index: controller.pageIndex.value,
           children: [
             const Home(),
-            Container(
-              child: Center(child: Text('SEARCH')),
-              ),
+            const Search(),
             Container(
               child: Center(child: Text('UPLOAD')),
               ),
