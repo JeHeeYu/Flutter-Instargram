@@ -16,7 +16,10 @@ enum PageName{
 
 // 바텀 NavigationBar 클릭 이벤트 관련 클래스
 class BottomNavController extends GetxController {
+  static BottomNavController get to => Get.find();
   RxInt pageIndex = 0.obs;
+  GlobalKey<NavigatorState> searchPageNavigationKey = 
+      GlobalKey<NavigatorState>();
   List<int> bottomHistory = [0];
 
   // 바텀 NavigationBar 클릭 시 이벤트
@@ -66,6 +69,14 @@ class BottomNavController extends GetxController {
       return true;
     }
     else {
+      // 현재 페이지
+      var page = PageName.values[bottomHistory.last];
+
+      if(page == PageName.SEARCH) {
+        var value = await searchPageNavigationKey.currentState!.maybePop();
+        if(value) return false;
+      }
+
       // 마지막 인덱스 지우기
       bottomHistory.removeLast();
 
